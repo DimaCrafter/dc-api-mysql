@@ -1,0 +1,19 @@
+{
+	"name": "dc-api-mysql",
+	"version": "0.1.0",
+	"description": "MySQL database driver for dc-api-core",
+	"author": "DimaCrafter",
+	"homepage": "https://github.com/DimaCrafter/dc-api-sql",
+	"bugs": "https://github.com/DimaCrafter/dc-api-sql/issues",
+	"repository": "github.com:DimaCrafter/dc-api-sql",
+	"license": "MIT",
+	"scripts": {
+		"test": "cd test && node ."
+	},
+	"dependencies": {
+		"mysql2": "^3.1.2"
+	},
+	"peerDependencies": {
+		"dc-api-core": "^0.3.4"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"plugins": ["../.."],
+	"db": {
+		"mysql": {
+			"host": "db4free.net",
+			"name": "dcapisql",
+			"user": "dcapisql",
+			"pass": "password"
+		}
+	}
+}
