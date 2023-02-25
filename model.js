@@ -1,12 +1,14 @@
-const { escapeId, escape } = require('mysql2');
 const { SqlQuery } = require('./query');
-const { pascalToSnake, schemaTypeToSql } = require('./utils');
+const { pascalToSnake } = require('./utils');
 const {
 	FindPipeline, FindOnePipeline,
 	DeletePipeline, DeleteOnePipeline,
 	UpdatePipeline, UpdateOnePipeline
 } = require('./pipelines');
 
+/** @typedef {import('dc-api-core/db').Model} BaseModel */
+
+/** @extends {BaseModel} */
 class Model {
 	/**
 	 * @param {InstanceType<import('.')>} db
@@ -101,7 +103,7 @@ class Model {
 			const info = this.schema[field];
 			if (!info) continue;
 
-			if (info.json) {
+			if (info.type == 'json') {
 				if (typeof values[field] != 'string') {
 					values[field] = JSON.stringify(values[field]);
 				}
@@ -114,8 +116,8 @@ class Model {
 			const info = this.schema[field];
 			if (!info) continue;
 
-			if (info.json) {
-				values[field] = JSON.parse(values[field]);
+			if (info.type == 'int' || info.type == 'long') {
+				values[field] = parseInt(values[field]);
 			}
 		}
 	}

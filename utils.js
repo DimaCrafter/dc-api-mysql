@@ -20,6 +20,7 @@ exports.pascalToSnake = value => {
 exports.schemaTypeToSql = type => {
 	switch (type) {
 		case 'string': return 'varchar';
+		case 'long': return 'bigint';
 		default: return type;
 	}
 }

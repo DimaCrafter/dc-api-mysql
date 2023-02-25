@@ -1,6 +1,6 @@
 {
 	"name": "dc-api-mysql",
-	"version": "0.1.0",
+	"version": "0.1.0-1",
 	"description": "MySQL database driver for dc-api-core",
 	"author": "DimaCrafter",
 	"homepage": "https://github.com/DimaCrafter/dc-api-sql",
@@ -14,6 +14,6 @@
 		"mysql2": "^3.1.2"
 	},
 	"peerDependencies": {
-		"dc-api-core": "^0.3.4"
+		"dc-api-core": "^0.3.4-1"
 	}
 }

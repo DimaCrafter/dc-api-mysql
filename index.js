@@ -17,7 +17,6 @@ class MySQL extends DatabaseDriver {
 	constructor (config) {
         super();
         this.config = config;
-		this.models = {};
     }
 
 	async connect () {
@@ -31,7 +30,6 @@ class MySQL extends DatabaseDriver {
 			database: this.config.name
 		});
 
-		console.log('pre-resolve', this.connection);
 		tracker.resolve();
 		this.connection.on('error', err => {
 			Log.error('MySQL connection error', err);
@@ -45,19 +43,12 @@ class MySQL extends DatabaseDriver {
 	}
 
 	/**
-	 * @param {string} _basePath
 	 * @param {string} name
 	 * @param {any} schema
 	 * @returns {Model}
 	 */
-	getModel (_basePath, name, schema) {
-        if (name in this.models) {
-            return this.models[name];
-        }
-
-        const model = new Model(this, name, schema);
-        this.models[name] = model;
-        return model;
+	makeModel (name, schema) {
+        return new Model(this, name, schema);
     }
 }
 

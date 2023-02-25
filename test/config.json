@@ -1,5 +1,5 @@
 {
-	"plugins": ["../.."],
+	"plugins": ["local:.."],
 	"db": {
 		"mysql": {
 			"host": "db4free.net",
@@ -7,5 +7,9 @@
 			"user": "dcapisql",
 			"pass": "password"
 		}
+	},
+	"session": {
+		"store": "mysql",
+		"secret": "test"
 	}
 }
