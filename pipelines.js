@@ -27,6 +27,16 @@ class FindPipeline extends Pipeline {
 		this._query = new SqlQuery().where(where);
 	}
 
+	sort (fields) {
+		if (typeof fields == 'object') {
+			this._query.sortMongo(fields);
+		} else {
+			this._query.sortMany(arguments);
+		}
+
+		return this;
+	}
+
 	select (...fields) {
 		this._projection = fields;
 		return this;

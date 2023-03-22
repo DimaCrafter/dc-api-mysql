@@ -181,9 +181,43 @@ class SqlQuery {
 	}
 
 	sort (by, descending = false) {
-		this.raw += ` ORDER BY ${by} `;
+		this.raw += ` ORDER BY ${escapeId(by)} `;
 		if (descending) this.raw += 'DESC';
 		else this.raw += 'ASC';
+
+		return this;
+	}
+
+	sortMany (fields) {
+		this.raw += ' ORDER BY';
+		let first = true;
+		for (const field of fields) {
+			this.raw += ' ';
+			this.raw += escapeId(field.slice(1));
+
+			if (field[0] == '-') this.raw += ' DESC';
+			else this.raw += ' ASC';
+
+			if (!first) this.raw += ', ';
+			else first = false;
+		}
+
+		return this;
+	}
+
+	sortMongo (fields) {
+		this.raw += ' ORDER BY';
+		let first = true;
+		for (const field in fields) {
+			this.raw += ' ';
+			this.raw += escapeId(field);
+
+			if (fields[field] < 0) this.raw += ' DESC';
+			else this.raw += ' ASC';
+
+			if (!first) this.raw += ', ';
+			else first = false;
+		}
 
 		return this;
 	}

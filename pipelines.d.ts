@@ -8,6 +8,9 @@ class Pipeline<T> implements PromiseLike<T> {
 export class FindPipeline extends Pipeline<any[]> {
 	constructor (model: Model, where: any);
 
+	sort (fields: Record<string, number>): this;
+	sort (...fields: string[]): this;
+
 	/** Keep only specified fields in result entires */
 	select (...fields: string[]): this;
 }
